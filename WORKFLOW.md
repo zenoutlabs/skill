@@ -95,5 +95,6 @@
 
 ## 9) Export what you need
 
-- `tsci export` for SVG/netlist/DSN/3D/library
-- Fabrication zip (Gerbers/BOM/PnP): use the export UI after `tsci dev`
+- `tsci export <file> -f <format>` for SVG/netlist/DSN/3D/library/fabrication.
+- Use `-f gerbers` for a fabrication ZIP with Gerbers, BOM, and pick-and-place CSVs; use `-f kicad_zip` for a KiCad project ZIP.
+- Both formats accept the built Circuit JSON file and `-o <output-path>`, so exports can run in CI without the `tsci dev` UI. See [CLI export examples](CLI.md).

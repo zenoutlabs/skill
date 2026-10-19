@@ -202,8 +202,8 @@ DRC (Design Rule Check)
 - DRC errors are often reported but can frequently be ignored during development.
 - Focus on getting the circuit correct first; DRC violations can be addressed later when preparing for manufacturing.
 
-7) Export (SVG/netlist/3D/library)
-- `tsci export <file> -f <format>`
+7) Export (SVG/netlist/3D/library/fabrication)
+- `tsci export <file> -f <format> [-o <output-path>]`
 
 Common formats
 - `schematic-svg`
@@ -212,6 +212,16 @@ Common formats
 - `specctra-dsn`
 - `gltf` / `glb`
 - `kicad-library`
+- `gerbers` – Fabrication ZIP containing Gerber files, `bom.csv`, and `pick_and_place.csv`.
+- `kicad_zip` – KiCad project ZIP containing schematic, PCB, and project files.
+
+Export an existing build's Circuit JSON without opening `tsci dev` (also suitable for CI):
+```bash
+tsci export dist/index/circuit.json -f gerbers -o board-gerbers.zip
+tsci export dist/index/circuit.json -f kicad_zip -o board-kicad.zip
+```
+Replace `dist/index/circuit.json` with your build's Circuit JSON path.
+Relative output paths are resolved beside the input file, so these examples write ZIPs in `dist/index/`; use an absolute output path to choose another location.
 
 8) Visual snapshots for analysis and verification
 - `tsci snapshot` generates visual outputs (schematic/PCB, optionally 3D) and writes/overwrites snapshots by default.
